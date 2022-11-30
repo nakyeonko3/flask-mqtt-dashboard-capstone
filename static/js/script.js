@@ -6,7 +6,7 @@ const date_div = document.querySelector('.date_div');
 
 const init = () => {
   submit_form.addEventListener('submit', handleSubmit);
-  console.log(renderSensorData());
+  renderSensorData();
   //   setInterval(renderSensorData, 1000);
   setInterval(renderNotDateTime, 1000);
 };
@@ -19,11 +19,11 @@ const handleSubmit = (event) => {
 const getSensorData = () => {
   return fetch('/getSensorData')
     .then((response) => response.json())
-    .then((data) => data.test_data);
+    .then((data) => data.sensor_data);
 };
 
 const renderSensorData = async () => {
-  return await getSensorData();
+  sensor_data_div = await getSensorData();
 };
 
 const getNowDateTime = () => {
