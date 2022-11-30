@@ -23,7 +23,7 @@ const getSensorData = () => {
 };
 
 const renderSensorData = async () => {
-  sensor_data_div = await getSensorData();
+  sensor_data_div.innerText = await getSensorData();
 };
 
 const getNowDateTime = () => {
