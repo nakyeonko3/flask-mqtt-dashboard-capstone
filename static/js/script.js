@@ -6,8 +6,7 @@ const date_div = document.querySelector('.date_div');
 
 const init = () => {
   submit_form.addEventListener('submit', handleSubmit);
-  renderSensorData();
-  //   setInterval(renderSensorData, 1000);
+  setInterval(renderSensorData, 1000);
   setInterval(renderNotDateTime, 1000);
 };
 
@@ -39,5 +38,6 @@ const renderNotDateTime = () => {
   date_div.innerText = getNowDateTime();
 };
 // 24시간에 한 번씩, 날짜 변경될 때만 날짜가 바뀌도록 수정해보기
+// 버그 확인하고 커밋하기
 
 init();

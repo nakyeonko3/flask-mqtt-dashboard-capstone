@@ -17,14 +17,15 @@ port = 5000
 def render_mainpage():
     return render_template('index.html', name="nakyeonko")
 
-# @sock.route('/getSensorData')
-# def getSensorData():
-#     sensor_data = read_csvfile.read_csv_Sensor_value_last()
-#     return jsonify({'sensor_data':sensor_data})
-
 @app.route('/getSensorData')
 def getSensorData():
-    return jsonify({'sensor_data':random.randint(0, 9)})
+    sensor_data = int(read_csvfile.read_csv_Sensor_value_last())
+    return jsonify({'sensor_data':sensor_data})
+
+
+# @app.route('/getSensorData')
+# def getSensorData():
+#     return jsonify({'sensor_data':12})
 
 if __name__ == '__main__':
     mosquitto_mqtt_pi.mqtt_init()

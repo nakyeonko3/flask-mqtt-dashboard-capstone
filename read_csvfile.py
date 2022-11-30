@@ -25,7 +25,7 @@ def get_csv_data_using_open():
 if __name__ == "__main__":
     #print(read_csv_Date_value_last())
     # print(read_csv_Sensor_value_last())
-    print(get_csv_data_using_open())
+    print(int(read_csv_Sensor_value_last()))
 
     # string = 'aaa1234, ^&*2233pp'
     # numbers = re.sub(r'[^0-9]', '', string)
