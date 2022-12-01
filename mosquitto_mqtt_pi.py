@@ -27,7 +27,7 @@ def mqtt_init():
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect('raspberrypi')
+    client.connect('nakyeonkopi') #접속할 호스트명
     client.loop_start()
 
 
