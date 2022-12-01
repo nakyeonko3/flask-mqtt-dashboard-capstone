@@ -4,14 +4,11 @@ from flask import Flask, render_template, jsonify
 import paho.mqtt.client as mqtt
 import mosquitto_mqtt_pi
 import read_csvfile
-from flask_sock import Sock
 import random
 port = 5000
 
 app = Flask(__name__)
-sock = Sock(app)
 port = 5000
-
 
 @app.route('/')
 def render_mainpage():
@@ -19,13 +16,7 @@ def render_mainpage():
 
 @app.route('/getSensorData')
 def getSensorData():
-    sensor_data = int(read_csvfile.read_csv_Sensor_value_last())
-    return jsonify({'sensor_data':sensor_data})
-
-
-# @app.route('/getSensorData')
-# def getSensorData():
-#     return jsonify({'sensor_data':12})
+    return jsonify({'sensor_data':read_csvfile.get_senor_data_last_value()})
 
 if __name__ == '__main__':
     mosquitto_mqtt_pi.mqtt_init()
