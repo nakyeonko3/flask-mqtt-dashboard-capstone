@@ -1,11 +1,10 @@
 console.log('hello world');
 
 const submit_form = document.querySelector('.submit_form');
-const sensor_data_div = document.querySelector('.sensor_data_div');
-const date_div = document.querySelector('.date_div');
+const sensor_data_span = document.querySelector('.sensor_data');
+const date_span = document.querySelector('.date');
 
 const init = () => {
-  submit_form.addEventListener('submit', handleSubmit);
   setInterval(renderSensorData, 1000);
   setInterval(renderNotDateTime, 1000);
 };
@@ -22,7 +21,7 @@ const getSensorData = () => {
 };
 
 const renderSensorData = async () => {
-  sensor_data_div.innerText = await getSensorData();
+  sensor_data_span.innerText = await getSensorData();
 };
 
 const getNowDateTime = () => {
@@ -35,9 +34,8 @@ const getNowDateTime = () => {
 };
 
 const renderNotDateTime = () => {
-  date_div.innerText = getNowDateTime();
+  date_span.innerText = getNowDateTime();
 };
 // 24시간에 한 번씩, 날짜 변경될 때만 날짜가 바뀌도록 수정해보기
-// 버그 확인하고 커밋하기
 
 init();
