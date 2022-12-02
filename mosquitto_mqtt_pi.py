@@ -3,8 +3,11 @@ import time
 import pandas as pd
 from datetime import datetime
 
+# ac 전력 센서
+topic = "ac_sensor_outTopic"
 
-topic = "outTopic"
+# 가변 저항
+# topic = "outTopic" 
 
 df = pd.DataFrame([], columns=['Date', 'Sensor'])
 

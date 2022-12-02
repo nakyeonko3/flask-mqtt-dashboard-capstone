@@ -4,7 +4,7 @@ from flask import Flask, render_template, jsonify
 import paho.mqtt.client as mqtt
 import mosquitto_mqtt_pi
 import read_csvfile
-import random
+
 port = 5000
 
 app = Flask(__name__)
