@@ -4,10 +4,10 @@ import pandas as pd
 from datetime import datetime
 
 # ac 전력 센서
-topic = "ac_sensor_outTopic"
+# topic = "ac_sensor_outTopic"
 
 # 가변 저항
-# topic = "outTopic" 
+topic = "r_outTopic" 
 
 df = pd.DataFrame([], columns=['Date', 'Sensor'])
 
