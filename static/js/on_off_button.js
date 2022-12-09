@@ -1,10 +1,12 @@
 const onOffButton = document.getElementById('on-off-button');
 
 const turnOn = () => {
+  setInnerText('turn off');
   return fetch('/turnOn');
 };
 
 const turnOff = () => {
+  setInnerText('turn on');
   return fetch('/turnOff');
 };
 
@@ -12,11 +14,9 @@ let toggle = true;
 
 const handleClick = async () => {
   if (toggle === true) {
-    setInnerText('turn off');
     turnOn();
     toggle = false;
   } else {
-    setInnerText('turn on');
     turnOff();
     toggle = true;
   }
