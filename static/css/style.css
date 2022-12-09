@@ -40,3 +40,7 @@ body {
   height: 250px;
   z-index: 1;
 }
+
+.none {
+  display: none;
+}
