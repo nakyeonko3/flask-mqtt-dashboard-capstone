@@ -4,6 +4,7 @@ const submit_form = document.querySelector('.submit_form');
 const sensor_data_span = document.querySelector('.sensor_data');
 const date_span = document.querySelector('.date');
 
+
 const init = () => {
   setInterval(renderSensorData, 1000);
   setInterval(renderNotDateTime, 1000);

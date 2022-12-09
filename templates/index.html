@@ -18,9 +18,8 @@
   </head>
   <body>
     <div class="flex-center">
-      <div><span class="text-size-big">Smart Plug System</span></div>
       <div>
-        <span class="text-size-small">현재 전력 값:</span>
+        <span class="text-size-small">가변 저항 값:</span>
         <span class="sensor_data text-size-small"></span>
       </div>
       <div>
@@ -30,12 +29,24 @@
         <canvas id="myChart"></canvas>
       </div>
       <div>
-        <!-- <form class="submit_form">
-          <input type="submit" value="submit" />
-        </form> -->
-      </div>
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/sensor.js') }}"></script>
+    <div class="flex-center">
+      <div>
+        <h3>어항 ph 측정</h3>
+      </div>
+      <div>
+        <span class="text-size-small pH_value">ph:</span>
+        <span class="text-size-small pH_value" id="pH_value"></span>
+        <span class="text-size-small" id="ph_warning"></span>
+        <div class="chart-size">
+          <canvas id="myChart2"></canvas>
+        </div>
+      </div>
+      <div><span id="ph_warning"></span></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/rand.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/rand_graph.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ph_warning.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ph_graph.js') }}"></script>
   </body>
 </html>

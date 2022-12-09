@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: 'Nanum Pen Script', cursive;
+  font-family: 'Malgun Gothic', '굴림', 'Gulim', 'Arial';
 }
 
 .flex-center {
@@ -31,6 +31,7 @@ body {
 
 .text-size-small {
   font-size: 1.5em;
+  font-weight: 700;
 }
 
 .chart-size {

@@ -5,13 +5,13 @@ def get_senor_data_last_value():
     df = pd.read_csv('sensor.csv')
     last_number = df['Sensor'].values[-1]
     last_Date = df['Date'].values[-1]
-    return int(last_number)
+    return last_number
     #csv file 마지막 줄의 Sensor 값을 가져옴
 
 def get_date_last_value():
     df = pd.read_csv('sensor.csv')
     last_Date = df['Date'].values[-1]
-    return int(last_Date) 
+    return last_Date 
     #csv file 마지막 줄의 Sensor 값을 가져옴
 
 

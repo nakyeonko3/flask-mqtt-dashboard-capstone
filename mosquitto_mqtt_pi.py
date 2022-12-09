@@ -3,8 +3,8 @@ import time
 import pandas as pd
 from datetime import datetime
 
-# ac 전력 센서
-topic = "ac_sensor_outTopic"
+# ph 센서
+topic = "ph_outTopic"
 
 # 가변 저항
 # topic = "outTopic" 
@@ -30,7 +30,7 @@ def mqtt_init():
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect('nakyeonkopi') #접속할 호스트명
+    client.connect('nakyeonkopi.local') #접속할 호스트명
     client.loop_start()
 
 
