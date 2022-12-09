@@ -3,7 +3,7 @@
     labels: [],
     datasets: [
       {
-        label: 'w',
+        label: 'rand',
         data: [],
         // borderColor: 'rgb(54,162,235)',
         borderColor: 'rgb(112, 108, 108)',
@@ -39,5 +39,5 @@
     },
   };
 
-  const myChart = new Chart(document.getElementById('myChart2'), ph_config);
+  const myChart = new Chart(document.getElementById('phChart'), ph_config);
 })();

@@ -45,7 +45,7 @@ const getSensorDate = () => {
     },
   };
 
-  const myChart = new Chart(document.getElementById('myChart'), config);
+  const myChart = new Chart(document.getElementById('randChart'), config);
 
   // document
   //   .getElementById('pause_button')
