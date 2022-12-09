@@ -17,35 +17,34 @@
     <title>사물인터넷 운영체제</title>
   </head>
   <body>
-    <div class="flex-center">
-      <div>
-        <span class="text-size-small">가변 저항 값:</span>
-      <div>
-
-        <span class="sensor_data text-size-small"></span>
-      </div>
+    <section class="flex-center">
       <div>
         <span class="date text-size-small"></span>
+      </div>
+      <div>
+        <span class="text-size-small">랜덤 값 </span>
+      </div>
+      <div>
+        <span class="text-size-small">값:</span>
+        <span class="sensor_data text-size-small"></span>
       </div>
       <div class="chart-size">
         <canvas id="myChart"></canvas>
       </div>
+    </section>
+    <section class="flex-center">
       <div>
-    </div>
-    <div class="flex-center">
-      <div>
-        <h3>어항 ph 측정</h3>
+        <span class="text-size-small">어항 ph 측정</span>
       </div>
       <div>
         <span class="text-size-small pH_value">ph:</span>
         <span class="text-size-small pH_value" id="pH_value"></span>
         <span class="text-size-small" id="ph_warning"></span>
-        <div class="chart-size">
-          <canvas id="myChart2"></canvas>
-        </div>
       </div>
-      <div><span id="ph_warning"></span></div>
-    </div>
+      <div class="chart-size">
+        <canvas id="myChart2"></canvas>
+      </div>
+    </section>
     <script src="{{ url_for('static', filename='js/rand.js') }}"></script>
     <script src="{{ url_for('static', filename='js/rand_graph.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ph_warning.js') }}"></script>
