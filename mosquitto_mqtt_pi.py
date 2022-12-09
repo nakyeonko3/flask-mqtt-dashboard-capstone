@@ -5,9 +5,9 @@ from datetime import datetime
 
 # ph 센서
 topic = "ph_outTopic"
-
 # 가변 저항
-# topic = "outTopic" 
+# topic = "r_outTopic" 
+
 
 df = pd.DataFrame([], columns=['Date', 'Sensor'])
 
