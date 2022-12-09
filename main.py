@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, jsonify
 import paho.mqtt.client as mqtt
-import mosquitto_mqtt_pi
+from mosquitto_mqtt_class import Mqtt_class
 import read_csvfile
 import random
 
@@ -25,6 +25,17 @@ def getPHSensorData():
     sensor_value = float(read_csvfile.get_senor_data_last_value())
     return jsonify({'sensor_data':sensor_value})
 
+@app.route('/turnOn')
+def turnOn():
+    mqtt_test.turnOn()
+    return "1"
+
+@app.route('/turnOff')
+def turnOff():
+    mqtt_test.turnOff()
+    return "0"
+
 if __name__ == '__main__':
-    mosquitto_mqtt_pi.mqtt_init()
+    mqtt_test = Mqtt_class()
+    mqtt_test.init()
     app.run(host='0.0.0.0', port=port, debug=True)

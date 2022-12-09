@@ -3,7 +3,7 @@
     labels: [],
     datasets: [
       {
-        label: 'rand',
+        label: 'ph',
         data: [],
         // borderColor: 'rgb(54,162,235)',
         borderColor: 'rgb(112, 108, 108)',
