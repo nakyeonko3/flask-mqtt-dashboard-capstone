@@ -29,24 +29,48 @@ const setInnerText = (text) => {
   onOffButton.innerText = text;
 };
 
+const turnOn_15s = () => {
+  fetch('/turnOn');
+  setTimeout(() => {
+    fetch('/turnOff');
+  }, 15000);
+};
+
+let autoModeTimer;
+
+const checkPHValue = () => {
+  if (PHSensorValue >= 7.5 && PHSensorValue <= 8.5) {
+  } else if (PHSensorValue < 7.5) {
+    turnOn_15s();
+  } else if (PHSensorValue > 8.5) {
+    turnOn_15s();
+  }
+};
+
+const autoModeTimer_start = () => {
+  autoModeTimer = setInterval(checkPHValue, 30000);
+};
+
 const handleAutobuttonClick = () => {
   onOffButton.classList.toggle('none');
   if (handleAutobutton_toggle === true) {
-    if (PHSensorValue >= 7.5 && PHSensorValue <= 8.5) {
-      turnOff();
-    } else if (PHSensorValue < 7.5) {
-      turnOn();
-    } else if (PHSensorValue > 8.5) {
-      turnOn();
-    }
-    handleAutobutton_toggle = false;
     autoModeElement.innerText = 'auto mode off';
+    handleAutobutton_toggle = false;
+    autoModeTimer_start();
   } else {
     turnOff();
-    handleAutobutton_toggle = true;
     autoModeElement.innerText = 'auto mode on';
+    handleAutobutton_toggle = true;
+    clearInterval(autoModeTimer);
   }
 };
+
+// if (PHSensorValue >= 7.5 && PHSensorValue <= 8.5) {
+// } else if (PHSensorValue < 7.5) {
+//   turnOn_15s();
+// } else if (PHSensorValue > 8.5) {
+//   turnOn_15s();
+// }
 
 const onOffButtonInit = () => {
   onOffButton.addEventListener('click', handleClick);

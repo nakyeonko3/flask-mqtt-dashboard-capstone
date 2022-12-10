@@ -1,7 +1,6 @@
 import paho.mqtt.client as mqtt
-import pandas as pd
 import time
-from datetime import datetime
+from make_csvfile import make_csvfile
 
 # ph 센서 topic 명
 topic = "ph_sensor_outTopic"
@@ -12,22 +11,11 @@ inTopic = "ph_relay_motor_inTopic"
 # topic = "r_outTopic" 
 
 
-df = pd.DataFrame([], columns=['Date', 'Sensor'])
-
 def on_connect(client, userdata, flags, rc):
     client.subscribe(topic)
 
 def on_message(client, userdata, msg):
-    make_csvfile(msg.payload.decode("utf-8"))
-
-def make_csvfile(sensor_value):
-    global df
-    new_line = pd.DataFrame({
-            'Date': [datetime.now().strftime('%Y-%m-%d %H:%M:%S')],
-            'Sensor': [sensor_value]
-            })
-    df = pd.concat([df, new_line], ignore_index=True)
-    df.to_csv('sensor.csv', index=False)
+    make_csvfile(sensor_value=msg.payload.decode("utf-8"), file_name='sensor.csv')
 
 class Mqtt_class:
   def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic"):
@@ -49,7 +37,6 @@ class Mqtt_class:
 
 
 count =0
-
 if __name__ == "__main__":
     mqtt_test = Mqtt_class()
     mqtt_test.init()
