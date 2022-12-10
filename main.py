@@ -5,6 +5,7 @@ import paho.mqtt.client as mqtt
 from mosquitto_mqtt_class import Mqtt_class
 import read_csvfile
 import random
+from bmp_sensor import start_bmp_sensor
 
 port = 5000
 
@@ -18,7 +19,8 @@ def render_mainpage():
 
 @app.route('/getSensorData')
 def getSensorData():
-    return jsonify({'sensor_data':random.randint(100, 1024)})
+    temper_sensor_value = float(read_csvfile.get_senor_data_last_value())
+    return jsonify({'sensor_data':temper_sensor_value})
 
 @app.route('/getPHSensorData')
 def getPHSensorData():
@@ -38,4 +40,5 @@ def turnOff():
 if __name__ == '__main__':
     mqtt_test = Mqtt_class()
     mqtt_test.init()
+    start_bmp_sensor()
     app.run(host='0.0.0.0', port=port, debug=True)

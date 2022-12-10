@@ -1,7 +1,9 @@
 import paho.mqtt.client as mqtt
 import time
-from make_csvfile import make_csvfile
+# from make_csvfile import make_csvfile
+from make_csvfile_class import Make_csvfile
 
+makecsv_ph = Make_csvfile(file_name="sensor.csv")
 # ph 센서 topic 명
 topic = "ph_sensor_outTopic"
 
@@ -15,8 +17,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(topic)
 
 def on_message(client, userdata, msg):
-    make_csvfile(sensor_value=msg.payload.decode("utf-8"), file_name='sensor.csv')
-
+    makecsv_ph.make_csvfile(sensor_value=msg.payload.decode("utf-8"))
 class Mqtt_class:
   def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic"):
     self.IP = IP
