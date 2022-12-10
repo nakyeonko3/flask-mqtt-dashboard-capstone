@@ -3,10 +3,12 @@ import pandas as pd
 import time
 from datetime import datetime
 
-# ph 센서
-topic = "ph_outTopic"
-inTopic = "test_inTopic"
-# 가변 저항
+# ph 센서 topic 명
+topic = "ph_sensor_outTopic"
+
+# 릴레이 topic 명
+inTopic = "ph_relay_motor_inTopic"
+
 # topic = "r_outTopic" 
 
 
