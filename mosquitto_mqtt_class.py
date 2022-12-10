@@ -28,7 +28,7 @@ def make_csvfile(sensor_value):
     df.to_csv('sensor.csv', index=False)
 
 class Mqtt_class:
-  def __init__(self, IP='nakyeonkopi.local', topic = "ph_outTopic"):
+  def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic"):
     self.IP = IP
     self.topic = topic
 
