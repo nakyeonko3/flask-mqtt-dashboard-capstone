@@ -1,8 +1,8 @@
 import pandas as pd
 import re
 
-def get_senor_data_last_value():
-    df = pd.read_csv('sensor.csv')
+def get_senor_data_last_value(file_name):
+    df = pd.read_csv(file_name)
     last_number = df['Sensor'].values[-1]
     last_Date = df['Date'].values[-1]
     return last_number
@@ -25,7 +25,7 @@ def get_last_line():
 if __name__ == "__main__":
     #print(read_csv_Date_value_last())
     # print(read_csv_Sensor_value_last())
-    print(int(get_senor_data_last_value()))
+    print(int(get_senor_data_last_value(file_name='temper_sensor.csv')))
 
     # string = 'aaa1234, ^&*2233pp'
     # numbers = re.sub(r'[^0-9]', '', string)

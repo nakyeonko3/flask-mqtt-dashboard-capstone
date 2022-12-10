@@ -15,14 +15,14 @@ const handleSubmit = (event) => {
   renderSensorData();
 };
 
-const getSensorData = () => {
-  return fetch('/getSensorData')
+const getTemperSeneorData = () => {
+  return fetch('/getTemperSeneorData')
     .then((response) => response.json())
     .then((data) => data.sensor_data);
 };
 
 const renderSensorData = async () => {
-  sensor_data_span.innerText = await getSensorData();
+  sensor_data_span.innerText = await getTemperSeneorData();
 };
 
 const getNowDateTime = () => {

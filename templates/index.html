@@ -22,11 +22,12 @@
         <span class="date text-size-small"></span>
       </div>
       <div>
-        <span class="text-size-small">랜덤 값 </span>
+        <span class="text-size-small">어항 온도</span>
       </div>
       <div>
-        <span class="text-size-small">값:</span>
+        <span class="text-size-small">온도:</span>
         <span class="sensor_data text-size-small"></span>
+        <span class="text-size-small">°C</span>
       </div>
       <div class="chart-size">
         <canvas id="randChart"></canvas>
@@ -51,8 +52,8 @@
         <button id="auto-mode">auto mode on</button>
       </div>
     </section>
-    <script src="{{ url_for('static', filename='js/rand.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/rand_graph.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/temper.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/temper_graph.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ph_warning.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ph_graph.js') }}"></script>
     <script src="{{ url_for('static', filename='js/on_off_button.js') }}"></script>

@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt
 from mosquitto_mqtt_class import Mqtt_class
 import read_csvfile
 import random
-from bmp_sensor import start_bmp_sensor
+from temper_sensor import start_bmp_sensor
 
 port = 5000
 
@@ -17,14 +17,14 @@ sensor_value = 0
 def render_mainpage():
     return render_template('index.html', name="nakyeonko")
 
-@app.route('/getSensorData')
-def getSensorData():
-    temper_sensor_value = float(read_csvfile.get_senor_data_last_value())
+@app.route('/getTemperSeneorData')
+def getTemperSeneorData():
+    temper_sensor_value = float(read_csvfile.get_senor_data_last_value(file_name='temper_sensor.csv'))
     return jsonify({'sensor_data':temper_sensor_value})
 
 @app.route('/getPHSensorData')
 def getPHSensorData():
-    sensor_value = float(read_csvfile.get_senor_data_last_value())
+    sensor_value = float(read_csvfile.get_senor_data_last_value(file_name='sensor.csv'))
     return jsonify({'sensor_data':sensor_value})
 
 @app.route('/turnOn')

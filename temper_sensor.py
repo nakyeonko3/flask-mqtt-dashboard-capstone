@@ -15,11 +15,12 @@ def read_temperature_from_bmp():
 def start_bmp_sensor():
     t1.callback_after(func =read_temperature_from_bmp, after=0,interval=1)
 
-# def hello1():
-#     print("hello")
+def hello1():
+    print("test hello1")
 
 if __name__ == "__main__":
     start_bmp_sensor()
-    # t1.callback_after(func=hello1, after=1, interval=1)
+    t1.callback_after(func=hello1, after=1, interval=1)
 
+# __name__이 정확하게 뭐지?
 #왜 파이썬 스레드는 메인 코드 실행 전에 넣어야지 실행이될까?

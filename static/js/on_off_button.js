@@ -15,7 +15,6 @@ let toggle = true;
 let handleAutobutton_toggle = true;
 
 const handleClick = async () => {
-  console.log('clicked');
   if (toggle === true) {
     turnOn();
     toggle = false;
@@ -64,13 +63,6 @@ const handleAutobuttonClick = () => {
     clearInterval(autoModeTimer);
   }
 };
-
-// if (PHSensorValue >= 7.5 && PHSensorValue <= 8.5) {
-// } else if (PHSensorValue < 7.5) {
-//   turnOn_15s();
-// } else if (PHSensorValue > 8.5) {
-//   turnOn_15s();
-// }
 
 const onOffButtonInit = () => {
   onOffButton.addEventListener('click', handleClick);
