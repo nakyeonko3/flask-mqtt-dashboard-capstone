@@ -7,11 +7,9 @@ import read_csvfile
 import random
 from temper_sensor import start_bmp_sensor
 from temper_sensor_minutes import start_bmp_sensor_minutes
-from servo import servo_motor_control, servo_motor_auto_mode_on, auto_motor
-import multiprocessing
+from servo import Auto_servo_Thread, servo_motor_control
 
-proc_servo_auto = multiprocessing.Process(target=servo_motor_auto_mode_on)
-
+auto_servo = Auto_servo_Thread()
 port = 5000
 
 app = Flask(__name__)
@@ -51,12 +49,12 @@ def servo_turnOn():
 
 @app.route('/servo_motor_auto_mode')
 def servo_motor_auto():
-    servo_motor_auto_mode_on()
+    auto_servo.start()
     return "4"
 
 @app.route('/servo_motor_auto_mode_off')
 def servo_motor_auto_off():
-    auto_motor.stop()
+    auto_servo.stop()
     return "5"
 
 if __name__ == '__main__':
