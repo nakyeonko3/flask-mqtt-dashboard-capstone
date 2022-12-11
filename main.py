@@ -7,8 +7,10 @@ import read_csvfile
 import random
 from temper_sensor import start_bmp_sensor
 from temper_sensor_minutes import start_bmp_sensor_minutes
-from servo import servo_motor_control
+from servo import servo_motor_control, servo_motor_auto_mode_on, auto_motor
+import multiprocessing
 
+proc_servo_auto = multiprocessing.Process(target=servo_motor_auto_mode_on)
 
 port = 5000
 
@@ -41,6 +43,21 @@ def turnOn():
 def turnOff():
     mqtt_test.turnOff()
     return "0"
+
+@app.route('/servo_turnOn')
+def servo_turnOn():
+    servo_motor_control()
+    return "2"
+
+@app.route('/servo_motor_auto_mode')
+def servo_motor_auto():
+    servo_motor_auto_mode_on()
+    return "4"
+
+@app.route('/servo_motor_auto_mode_off')
+def servo_motor_auto_off():
+    auto_motor.stop()
+    return "5"
 
 if __name__ == '__main__':
     mqtt_test = Mqtt_class()

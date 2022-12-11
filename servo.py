@@ -1,6 +1,9 @@
 import RPi.GPIO as GPIO
 import time
+from dynamikontrol import Timer
+# import multiprocessing
 
+auto_motor = Timer()
 
 def servo_motor_control():
     servo_pin = 18
@@ -16,6 +19,15 @@ def servo_motor_control():
     pwm.stop()
     GPIO.cleanup()
 
+def servo_motor_auto_mode_on():
+    auto_motor.callback_after(func=servo_motor_control,interval=20)
+
+# pro = multiprocessing.Process(target=servo_motor_auto_mode)
+
+count = 0
 
 if __name__ == "__main__":
-    servo_motor_control()
+    # servo_motor_control()
+    servo_motor_auto_mode_on()
+
+
