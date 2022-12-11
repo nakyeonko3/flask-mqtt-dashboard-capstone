@@ -1,11 +1,21 @@
-import pandas as pd
-from matplotlib import pyplot as plt
-df = pd.read_csv('sensor.csv')
-print(df)
-print(df.head())
+from servo import servo_motor_control
+from flask import Flask, render_template
 
-df['Sensor'] = df['Sensor'].astype(float)
-# df.plot(x='Date', y='Sensor', figsize=(16, 8))
-fig = df.plot(x='Date', y='Sensor', figsize=(16, 8)).get_figure()
+app = Flask(__name__)
 
-fig.savefig('test.png')
+@app.route('/')
+def render_mainpage():
+    return "hello"
+
+@app.route('/turnOn')
+def turnOn():
+    servo_motor_control()
+    return "1"
+
+@app.route('/turnOff')
+def turnOff():
+    # servo_motor_control()
+    return "0"
+
+if __name__ == "__main__":
+    app.run(port=5000, host="0.0.0.0", debug=True)

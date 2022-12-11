@@ -7,6 +7,7 @@ import read_csvfile
 import random
 from temper_sensor import start_bmp_sensor
 from temper_sensor_minutes import start_bmp_sensor_minutes
+from servo import servo_motor_control
 
 
 port = 5000
