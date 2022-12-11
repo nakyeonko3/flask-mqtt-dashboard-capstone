@@ -6,6 +6,8 @@ from mosquitto_mqtt_class import Mqtt_class
 import read_csvfile
 import random
 from temper_sensor import start_bmp_sensor
+from temper_sensor_minutes import start_bmp_sensor_minutes
+
 
 port = 5000
 
@@ -19,12 +21,14 @@ def render_mainpage():
 
 @app.route('/getTemperSeneorData')
 def getTemperSeneorData():
-    temper_sensor_value = float(read_csvfile.get_senor_data_last_value(file_name='temper_sensor.csv'))
+    temper_sensor_value = read_csvfile.get_senor_data_last_value(file_name='temper_sensor.csv',name='temper')
+    temper_sensor_value = float(temper_sensor_value)
     return jsonify({'sensor_data':temper_sensor_value})
 
 @app.route('/getPHSensorData')
 def getPHSensorData():
-    sensor_value = float(read_csvfile.get_senor_data_last_value(file_name='sensor.csv'))
+    sensor_value =read_csvfile.get_senor_data_last_value(file_name='sensor.csv',name='ph')
+    sensor_value = float(sensor_value)
     return jsonify({'sensor_data':sensor_value})
 
 @app.route('/turnOn')
@@ -40,5 +44,6 @@ def turnOff():
 if __name__ == '__main__':
     mqtt_test = Mqtt_class()
     mqtt_test.init()
+    start_bmp_sensor_minutes()
     start_bmp_sensor()
     app.run(host='0.0.0.0', port=port, debug=True)
