@@ -12,12 +12,6 @@ inTopic = "ph_relay_motor_inTopic"
 
 # topic = "r_outTopic" 
 
-
-def on_connect(client, userdata, flags, rc):
-    client.subscribe(topic)
-
-def on_message(client, userdata, msg):
-    makecsv_ph.make_csvfile(sensor_value=msg.payload.decode("utf-8"))
 class Mqtt_class:
   def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic", client_name="mainpy"):
     self.IP = IP
@@ -25,6 +19,12 @@ class Mqtt_class:
     self.client_name = client_name
 
   def init(self):
+    def on_connect(client, userdata, flags, rc):
+      client.subscribe(topic)
+
+    def on_message(client, userdata, msg):
+      makecsv_ph.make_csvfile(sensor_value=msg.payload.decode("utf-8"))
+    
     self.client = mqtt.Client(self.client_name)
     self.client.on_connect = on_connect
     self.client.on_message = on_message
