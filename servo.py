@@ -25,7 +25,7 @@ def servo_motor_interval(event):
             break
     # print("servo_motor break...")
 
-class Auto_servo_Thread():
+class Auto_Thread():
     def __init__(self, func=servo_motor_interval):
         self.func = func
     
@@ -41,7 +41,7 @@ class Auto_servo_Thread():
         self.event.set()
 
 if __name__ == "__main__":
-    auto_servo_thread=Auto_servo_Thread()
+    auto_servo_thread=Auto_Thread()
     auto_servo_thread.start()
     time.sleep(15)
     auto_servo_thread.stop()

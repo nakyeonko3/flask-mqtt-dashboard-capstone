@@ -28,40 +28,21 @@ const setInnerText = (text) => {
   onOffButton.innerText = text;
 };
 
-const turnOn_15s = () => {
-  fetch('/turnOn');
-  setTimeout(() => {
-    fetch('/turnOff');
-  }, 15000);
-};
-
-let autoModeTimer;
-
-const checkPHValue = () => {
-  if (PHSensorValue >= 7.5 && PHSensorValue <= 8.5) {
-  } else if (PHSensorValue < 7.5) {
-    turnOn_15s();
-  } else if (PHSensorValue > 8.5) {
-    turnOn_15s();
+const handleAutoTextToggle = () => {
+  if (handleAutobutton_toggle === true) {
+    autoModeElement.innerText = 'auto feed off';
+    handleAutobutton_toggle = false;
+    fetch('/auto_pump_turnOn');
+  } else {
+    autoModeElement.innerText = 'auto feed on';
+    handleAutobutton_toggle = true;
+    fetch('/auto_pump_turnOff');
   }
-};
-
-const autoModeTimer_start = () => {
-  autoModeTimer = setInterval(checkPHValue, 30000);
 };
 
 const handleAutobuttonClick = () => {
   onOffButton.classList.toggle('none');
-  if (handleAutobutton_toggle === true) {
-    autoModeElement.innerText = 'auto mode off';
-    handleAutobutton_toggle = false;
-    autoModeTimer_start();
-  } else {
-    turnOff();
-    autoModeElement.innerText = 'auto mode on';
-    handleAutobutton_toggle = true;
-    clearInterval(autoModeTimer);
-  }
+  handleAutoTextToggle();
 };
 
 const onOffButtonInit = () => {

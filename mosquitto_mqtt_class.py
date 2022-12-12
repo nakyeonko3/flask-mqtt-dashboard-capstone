@@ -3,28 +3,29 @@ import time
 # from make_csvfile import make_csvfile
 from make_csvfile_class import Make_csvfile
 
-makecsv_ph = Make_csvfile(file_name="sensor.csv")
+
 # ph 센서 topic 명
 topic = "ph_sensor_outTopic"
 
 # 릴레이 topic 명
 inTopic = "ph_relay_motor_inTopic"
 
-# topic = "r_outTopic" 
-
-
-def on_connect(client, userdata, flags, rc):
-    client.subscribe(topic)
-
-def on_message(client, userdata, msg):
-    makecsv_ph.make_csvfile(sensor_value=msg.payload.decode("utf-8"))
 class Mqtt_class:
-  def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic"):
+  def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic", client_name="mainpy", file_name="sensor.csv"):
     self.IP = IP
     self.topic = topic
+    self.client_name = client_name
+    self.file_name = file_name
+    self.makecsv_ph = Make_csvfile(file_name)
 
   def init(self):
-    self.client = mqtt.Client()
+    def on_connect(client, userdata, flags, rc):
+      client.subscribe(topic)
+
+    def on_message(client, userdata, msg):
+      self.makecsv_ph.make_csvfile(sensor_value=msg.payload.decode("utf-8"))
+    
+    self.client = mqtt.Client(self.client_name)
     self.client.on_connect = on_connect
     self.client.on_message = on_message
     self.client.connect(self.IP) #접속할 호스트명

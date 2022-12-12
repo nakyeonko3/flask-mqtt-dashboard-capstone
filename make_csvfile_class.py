@@ -7,7 +7,7 @@ class Make_csvfile():
         self.df = pd.DataFrame([], columns=['Date', 'Sensor'])
         self.file_name = file_name
 
-    def make_csvfile(self, sensor_value):
+    def make_csvfile(self, sensor_value, file_name = "sensor.csv"):
         new_line = pd.DataFrame({
                 'Date': [datetime.now().strftime('%Y-%m-%d %H:%M:%S')],
                 'Sensor': [sensor_value]
