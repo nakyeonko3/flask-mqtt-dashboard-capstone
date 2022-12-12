@@ -19,12 +19,13 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     makecsv_ph.make_csvfile(sensor_value=msg.payload.decode("utf-8"))
 class Mqtt_class:
-  def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic"):
+  def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic", client_name="mainpy"):
     self.IP = IP
     self.topic = topic
+    self.client_name = client_name
 
   def init(self):
-    self.client = mqtt.Client()
+    self.client = mqtt.Client(self.client_name)
     self.client.on_connect = on_connect
     self.client.on_message = on_message
     self.client.connect(self.IP) #접속할 호스트명

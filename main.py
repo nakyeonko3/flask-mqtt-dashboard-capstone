@@ -8,6 +8,7 @@ import random
 from temper_sensor import start_bmp_sensor
 from temper_sensor_minutes import start_bmp_sensor_minutes
 from servo import Auto_servo_Thread, servo_motor_control
+import auto_pump
 
 auto_servo = Auto_servo_Thread()
 port = 5000
