@@ -7,10 +7,12 @@ import read_csvfile
 import random
 from temper_sensor import start_bmp_sensor
 from temper_sensor_minutes import start_bmp_sensor_minutes
-from servo import Auto_Thread, servo_motor_control
-import auto_pump
+from servo import Auto_Thread, servo_motor_control, servo_motor_interval
+from auto_pump import auto_pump_start
 
-auto_servo = Auto_Thread()
+auto_servo_thread = Auto_Thread(func=servo_motor_interval)
+auto_motor_thread = Auto_Thread(func=auto_pump_start)
+
 port = 5000
 
 app = Flask(__name__)
@@ -43,6 +45,16 @@ def turnOff():
     mqtt_test.turnOff()
     return "0"
 
+@app.route('/auto_pump_turnOn')
+def auto_pump_turnOn():
+    auto_motor_thread.start()
+    return "0"
+
+@app.route('/auto_pump_turnOff')
+def auto_pump_turnOff():
+    auto_motor_thread.stop()
+    return "0"
+
 @app.route('/servo_turnOn')
 def servo_turnOn():
     servo_motor_control()
@@ -50,12 +62,12 @@ def servo_turnOn():
 
 @app.route('/servo_motor_auto_mode')
 def servo_motor_auto():
-    auto_servo.start()
+    auto_servo_thread.start()
     return "4"
 
 @app.route('/servo_motor_auto_mode_off')
 def servo_motor_auto_off():
-    auto_servo.stop()
+    auto_servo_thread.stop()
     return "5"
 
 if __name__ == '__main__':

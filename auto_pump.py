@@ -4,24 +4,34 @@ from mosquitto_mqtt_class import Mqtt_class
 from threading import Event, Thread
 from servo import Auto_Thread
 
-ph_value = 0.0
-autopump = Mqtt_class(client_name="autopump")
-autopump.init()
 
-def read_ph_csv(event):
+
+def check_ph(ph_value):
+    if ph_value > 8.5 or ph_value <7.5:
+        return False
+    else:
+        return True
+
+def read_ph_csv():
+    ph_value = get_senor_data_last_value(name="ph2",file_name="ph_sensor_minutes.csv")
+    return float(ph_value)
+
+def auto_pump_start(event, interval=1):
+    autopump = Mqtt_class(file_name="ph_sensor_minutes.csv", client_name="autopump")
+    autopump.init()
     while True:
-        ph_value = get_senor_data_last_value(name="ph",file_name="sensor.csv")
-        ph_value = float(ph_value)
-        if ph_value > 8.5 or ph_value <7.5:
+        if check_ph(read_ph_csv()):
             autopump.turnOn()
             sleep(3)
             autopump.turnOff()
-        sleep(1)
         if event.is_set():
             break
+        sleep(interval)
+
+ 
 
 if __name__ == "__main__":
-   auto_pump_thread = Auto_Thread(func=read_ph_csv)
+   auto_pump_thread = Auto_Thread(func=auto_pump_start)
    auto_pump_thread.start()
    sleep(10)
    auto_pump_thread.stop()

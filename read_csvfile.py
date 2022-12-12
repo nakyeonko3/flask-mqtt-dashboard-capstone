@@ -2,8 +2,9 @@ import pandas as pd
 import re
 import time
 
-save_data = {
+error_data = {
     "ph":0,
+    "ph2":0,
     "temper":0
 }
 
@@ -11,10 +12,10 @@ def get_senor_data_last_value(file_name, name):
     try:
         df = pd.read_csv(file_name)
         last_number = df['Sensor'].values[-1]
-        save_data[name] = last_number
+        error_data[name] = last_number
         return last_number
     except:
-        return save_data[name]
+        return error_data[name]
     #csv file 마지막 줄의 Sensor 값을 가져옴
 
 def get_date_last_value():
