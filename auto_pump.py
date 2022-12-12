@@ -8,9 +8,9 @@ from servo import Auto_Thread
 
 def check_ph(ph_value):
     if ph_value > 8.5 or ph_value <7.5:
-        return False
-    else:
         return True
+    else:
+        return False
 
 def read_ph_csv():
     ph_value = get_senor_data_last_value(name="ph2",file_name="ph_sensor_minutes.csv")
@@ -28,22 +28,9 @@ def auto_pump_start(event, interval=1):
             break
         sleep(interval)
 
- 
-
 if __name__ == "__main__":
    auto_pump_thread = Auto_Thread(func=auto_pump_start)
    auto_pump_thread.start()
    sleep(10)
    auto_pump_thread.stop()
 
-
-#1분에 한 번씩 읽고 
-
-
-
-# 7.5 미만 8.5초과시 펌프 작동
-
-
-#auto pump start
-
-#auto pump stop

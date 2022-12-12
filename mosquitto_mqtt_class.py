@@ -10,8 +10,6 @@ topic = "ph_sensor_outTopic"
 # 릴레이 topic 명
 inTopic = "ph_relay_motor_inTopic"
 
-# topic = "r_outTopic" 
-
 class Mqtt_class:
   def __init__(self, IP='nakyeonkopi3.local', topic = "ph_outTopic", client_name="mainpy", file_name="sensor.csv"):
     self.IP = IP
