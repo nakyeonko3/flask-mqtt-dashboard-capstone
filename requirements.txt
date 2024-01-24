@@ -5,7 +5,6 @@ dominate==2.7.0
 eventlet==0.33.2
 Flask==2.2.2
 Flask-Bootstrap==3.3.7.1
-Flask-MQTT==1.1.1
 flask-sock==0.5.2
 Flask-SocketIO==5.3.2
 greenlet==2.0.1
