@@ -1,5 +1,3 @@
-# https://stackoverflow.com/questions/43205568/python-flask-server-with-mqtt-subscription
-
 from flask import Flask, render_template, jsonify
 
 import read_csvfile
